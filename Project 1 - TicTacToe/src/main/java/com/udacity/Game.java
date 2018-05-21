@@ -69,7 +69,7 @@ public class Game {
      * @return boolean: true if play was successful, false if invalid play
      */
     public boolean playAt(int i, int j){
-        //check for index boundries
+        //check for index boundaries
         if(i>=3||j>=3||i<0||j<0)
             return false;
         //check if this position is available
@@ -150,6 +150,33 @@ public class Game {
      */
     public String checkGameWinner(char [][]grid){
         String result = "None";
+        char ch='i';
+        for(int i = 0; i < 3; i++) {
+            if ((grid[0][i] == grid[1][i]) && (grid[1][i] == grid[2][i])) {
+                ch = grid[0][i];
+                break;
+            }
+            if ((grid[i][0] == grid[i][1]) && (grid[i][1] == grid[i][2])) {
+                ch = grid[i][0];
+                break;
+            }
+            if ((grid[1][1] == grid[2][2]) && (grid[0][0] == grid[1][1])) {
+                ch = grid[0][0];
+                break;
+            }
+            if ((grid[1][1] == grid[2][0]) && (grid[1][1] == grid[0][2])) {
+                ch = grid[1][1];
+                break;
+            }
+        }
+        if( ch == 'x') result = "X wins";
+        if( ch == 'o') result = "O wins";
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(grid[i][j] == '-') ch = 't';
+            }
+        }
+        if(!(ch=='t')) result = "Tie";
         //Student code goes here ...
         return result;
     }
